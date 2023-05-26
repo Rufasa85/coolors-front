@@ -44,6 +44,22 @@ const API = {
           throw new Error("falied signup");
         }
       });
+  },
+  createPallet:(palletObj,token)=>{
+    return fetch(`${URL_PREFIX}/api/pallets`,{
+        method:"POST",
+        body:JSON.stringify(palletObj),
+        headers:{
+            "Content-Type":"application/json",
+            "authorization":`Bearer ${token}`
+        }
+    }).then(res=>{
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("falied signup");
+      }
+    })
   }
 };
 
