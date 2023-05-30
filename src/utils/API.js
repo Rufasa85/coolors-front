@@ -1,7 +1,7 @@
 //for local development
-// const URL_PREFIX = "http://localhost:3001";
+const URL_PREFIX = "http://localhost:3001";
 //deployed
-const URL_PREFIX = "https://coolors-back.herokuapp.com";
+// const URL_PREFIX = "https://coolors-back.herokuapp.com";
 
 const API = {
   login: (userObj) => {
@@ -47,6 +47,15 @@ const API = {
         }
       });
   },
+  getUserByName:(username)=>{
+    return fetch(`${URL_PREFIX}/api/users/byname/${username}`).then(res=>{
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("falied to fetch user " + username);
+      }
+    })
+  },
   createPallet:(palletObj,token)=>{
     return fetch(`${URL_PREFIX}/api/pallets`,{
         method:"POST",
@@ -80,6 +89,36 @@ const API = {
         throw new Error("falied to fetch pallet " + palId);
       }
     })
+  },
+  updatePallet:(palId,palObj,token)=>{
+    return fetch(`${URL_PREFIX}/api/pallets/${palId}`,{
+      method:"PUT",
+      body:JSON.stringify(palObj),
+      headers:{
+          "Content-Type":"application/json",
+          "authorization":`Bearer ${token}`
+      }
+  }).then(res=>{
+    if (res.ok) {
+      return res.json();
+    } else {
+      throw new Error("falied signup");
+    }
+  })
+  },
+  deletePallet:(palId,token)=>{
+    return fetch(`${URL_PREFIX}/api/pallets/${palId}`,{
+      method:"DELETE",
+      headers:{
+          "authorization":`Bearer ${token}`
+      }
+  }).then(res=>{
+    if (res.ok) {
+      return res.json();
+    } else {
+      throw new Error("falied to delete pallet "+ palId);
+    }
+  })
   }
 };
 

@@ -4,7 +4,7 @@ import ColorBlock from "../../components/ColorBlock";
 import Preview from "../../components/Preview";
 import API from "../../utils/API";
 import "./style.css";
-export default function FullPallet() {
+export default function FullPallet(props) {
   const params = useParams();
   const [pallet, setPallet] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -25,6 +25,12 @@ export default function FullPallet() {
       ) : (
         <div className="FullPallet">
             <h1>{pallet.name} by {pallet.User.username}</h1>
+            {/* {props.userId===pallet.UserId?(
+              <div>
+                <button>Edit</button>
+                <button>Delete</button>
+              </div>
+            ):null} */}
             <section className="flexy">
 
           <aside>

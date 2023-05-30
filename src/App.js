@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import AuthForm from "./pages/AuthForm";
 import FullPallet from "./pages/FullPallet";
+import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 import NewPallet from "./pages/NewPallet";
 import API from "./utils/API"
@@ -31,13 +32,13 @@ function App() {
     <Router>
     <Navbar userId={userId} username={username}/>
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home userId={userId} token={token}/>} />
         <Route path="/login" element={<AuthForm usage="Login" setUserId={setUserId} setUsername={setUsername} setToken={setToken} userId={userId} username={username}/>} />
         <Route path="/signup" element={<AuthForm usage="Signup" setUserId={setUserId} setUsername={setUsername} setToken={setToken} userId={userId} username={username}/>} />
-        <Route path="/user/:username" element={<h2>profile page</h2>} />
-        <Route path="/pallet/:id" element={<FullPallet/>} />
+        <Route path="/user/:username" element={<Profile userId={userId} token={token}/>} />
+        <Route path="/pallet/:id" element={<FullPallet userId={userId}/>} />
         <Route path="/newpallet" element={<NewPallet token={token} username={username}/>} />
-        <Route path="/*" element={<h2>page not found</h2>} />
+        <Route path="/*" element={<h2>Page not found</h2>} />
 
       </Routes>
       <hr />
