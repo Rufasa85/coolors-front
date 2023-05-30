@@ -21,16 +21,21 @@ function App() {
     }).catch(err=>{
       console.log("oh noes")
       console.log(err)
-      localStorage.removeItem("token")
-      setToken(null);
-      setUsername(null);
-      setUserId(0);
+     logout();
     })
   },[])
 
+
+  const logout = ()=>{
+    localStorage.removeItem("token")
+      setToken(null);
+      setUsername(null);
+      setUserId(0);
+  }
+
   return (
     <Router>
-    <Navbar userId={userId} username={username}/>
+    <Navbar userId={userId} username={username} logout={logout}/>
       <Routes>
         <Route path="/" element={<Home userId={userId} token={token}/>} />
         <Route path="/login" element={<AuthForm usage="Login" setUserId={setUserId} setUsername={setUsername} setToken={setToken} userId={userId} username={username}/>} />

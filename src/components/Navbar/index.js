@@ -8,6 +8,7 @@ export default function Navbar(props) {
         <Link to="/">Home</Link>
         {props.userId>0?<Link to="/newpallet">New Pallet</Link> :<Link to="/login">login</Link>}
         {props.userId>0?<Link to={`/user/${props.username}`}>My profile</Link> :<Link to="/signup">signup</Link>}
+        {props.userId>0?<button onClick={props.logout}>Logout</button>:null}
     </nav>
   )
 }
