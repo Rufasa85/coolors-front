@@ -1,0 +1,10 @@
+.Preview * {
+    margin:0;
+    padding:0;
+}
+
+.Preview {
+    display: flex;
+    flex-direction: column;
+   
+}

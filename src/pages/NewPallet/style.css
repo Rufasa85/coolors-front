@@ -1,3 +1,7 @@
 .NewPallet {
     background:#c0ffee;
 }
+
+.NewPallet > .flexy{
+    display: flex;
+}
