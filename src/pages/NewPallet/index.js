@@ -4,13 +4,23 @@ import { colord, extend } from "colord";
 import harmoniesPlugin from "colord/plugins/harmonies";
 import ColorBlock from '../../components/ColorBlock';
 import API from '../../utils/API';
+import { useNavigate } from 'react-router-dom';
 
 extend([harmoniesPlugin]);
 
 export default function NewPallet(props) {
+    const navigate = useNavigate()
     const [color, setColor] = useState("#c0ffee");
     const [name, setName] = useState("")
-    const [palletColors, setPalletColors] = useState([])
+    const [palletColors, setPalletColors] = useState([]);
+
+    useEffect(() => {
+        if(props.token===null){
+            navigate("/login")
+        }
+    },
+    [props.token])
+    
 
     const generatePallet= ()=>{
         const colorz = colord(color).harmonies("tetradic").map(cl=>{

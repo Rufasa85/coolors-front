@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import NewPallet from "./pages/NewPallet";
 import API from "./utils/API"
 function App() {
-  const [userId, setUserId] = useState(0);
+  const [userId, setUserId] = useState(-1);
   const [username, setUsername] = useState("")
   const [token, setToken] = useState("")
 
@@ -20,6 +20,9 @@ function App() {
       console.log("oh noes")
       console.log(err)
       localStorage.removeItem("token")
+      setToken(null);
+      setUsername(null);
+      setUserId(0);
     })
   },[])
 
@@ -28,8 +31,8 @@ function App() {
     <Navbar userId={userId} username={username}/>
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/login" element={<AuthForm usage="Login" setUserId={setUserId} setUsername={setUsername} setToken={setToken}/>} />
-        <Route path="/signup" element={<AuthForm usage="Signup" setUserId={setUserId} setUsername={setUsername} setToken={setToken}/>} />
+        <Route path="/login" element={<AuthForm usage="Login" setUserId={setUserId} setUsername={setUsername} setToken={setToken} userId={userId} username={username}/>} />
+        <Route path="/signup" element={<AuthForm usage="Signup" setUserId={setUserId} setUsername={setUsername} setToken={setToken} userId={userId} username={username}/>} />
         <Route path="/user/:username" element={<h2>profile page</h2>} />
         <Route path="/pallet/:id" element={<h2>pallet page</h2>} />
         <Route path="/newpallet" element={<NewPallet token={token}/>} />
