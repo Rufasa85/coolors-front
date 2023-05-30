@@ -41,6 +41,7 @@ export default function NewPallet(props) {
     API.createPallet(newPallet, props.token)
       .then((data) => {
         console.log(data);
+        navigate(`/user/${props.username}`)
       })
       .catch((err) => {
         console.log("oh noes!");

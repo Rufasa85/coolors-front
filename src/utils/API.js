@@ -1,7 +1,7 @@
 //for local development
-const URL_PREFIX = "http://localhost:3001";
+// const URL_PREFIX = "http://localhost:3001";
 //deployed
-// const URL_PREFIX = "https://coolors-back.herokuapp.com";
+const URL_PREFIX = "https://coolors-back.herokuapp.com";
 
 const API = {
   login: (userObj) => {
@@ -69,6 +69,15 @@ const API = {
         return res.json();
       } else {
         throw new Error("falied to fetch pallets");
+      }
+    })
+  },
+  getOnePallet:palId=>{
+    return fetch(`${URL_PREFIX}/api/pallets/${palId}`).then(res=>{
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("falied to fetch pallet " + palId);
       }
     })
   }

@@ -1,0 +1,7 @@
+.FullPallet{
+    background:gray;
+}
+
+.FullPallet > .flexy {
+    display: flex;
+}
